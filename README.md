@@ -1,4 +1,4 @@
-# MedicallCenter И ДА Я ЛЮБЛЮ КОММИТЫ
+# MedicallCenter 
 Репозиторйи с отчетами https://github.com/SerHNey/Praitik_01_01
 
 ## ❓ не готово

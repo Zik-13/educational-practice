@@ -1,0 +1,151 @@
+﻿<Page x:Class="MedicalCenter.Pages.Page_Result"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicalCenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Result"
+      Style="{StaticResource WinAll}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
+        </Grid.RowDefinitions>
+        <Button Content="На главную" HorizontalAlignment="Left" Margin="10" Padding="10 0" Click="btnBack_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="bntDeleteResult" Content="Удалить" Padding="5" Margin="10" Click="btnDeleteResult_Click" />
+            <Button x:Name="bntAddResult" Content="Добавить" Padding="5" Margin="10" Click="bntAddResult_Click" />
+        </StackPanel>
+        <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
+        <DataGrid x:Name="DataGridResult" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF498C51" VerticalGridLinesBrush="#FF498C51" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
+            <FrameworkElement.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF498C51"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
+            </FrameworkElement.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseLeftButtonDown"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Пациент" Binding="{Binding User.name}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#FF498C51"
+                              BorderThickness="2"
+                              Background="White"
+                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Лаборант" Binding="{Binding Worker.name}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#FF498C51"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Услуга" Binding="{Binding Service.service1}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#FF498C51"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Результат" Binding="{Binding result1}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#FF498C51"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding date}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Content="Назад" Width="1in" MaxWidth="2in" Margin="0 0.1in 0.1in 0.1in" Click="PreviousPageButton_Click"/>
+            <Button Content="Вперед" Width="1in" MaxWidth="2in" Margin="0 0.1in" Click="NextPageButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

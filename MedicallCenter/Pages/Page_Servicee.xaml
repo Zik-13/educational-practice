@@ -1,0 +1,135 @@
+﻿<Page x:Class="MedicalCenter.Pages.Page_Servicee"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:zxing="clr-namespace:ZXing;assembly=zxing"
+      xmlns:local="clr-namespace:MedicalCenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Servicee"
+      Style="{StaticResource WinAll}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnBackService" Content="На главную" HorizontalAlignment="Left" Margin="10" Padding="10 0" Click="btnBack_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btnDeleteService" Content="Удалить" Margin="10" Padding="5" Click="bntDeleteService_Click" />
+            <Button Name="btnAddeditService" Content="Добавить" Margin="10" Padding="5" Click="btn_AddEditService_Click" />
+        </StackPanel>
+        <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
+        <DataGrid x:Name="DataGridService" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
+            <FrameworkElement.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#045C70"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
+            </FrameworkElement.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseLeftButtonDown"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Штрих-код">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding image}" Height="100" Width="200"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#FF498C51"
+                              BorderThickness="2"
+                              Background="White"
+                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Номер услуги" Binding="{Binding kod_service}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
+                              Background="White" Padding="5,0,5,5">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Услуга" Binding="{Binding service1}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#FF498C51"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding price}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Content="Назад" Width="1in" MaxWidth="2in" Margin="0 0.1in 0.1in 0.1in" Click="PreviousPageButton_Click"/>
+            <Button Content="Вперед" Width="1in" MaxWidth="2in" Margin="0 0.1in" Click="NextPageButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
